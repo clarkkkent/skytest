@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHardDiskPlugin = require('html-webpack-harddisk-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
@@ -109,6 +110,13 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
+        new CopyWebpackPlugin([
+            {
+                from: path.resolve(__dirname, 'src/images'),
+                to: 'images',
+            },
+        ]),
+
         new MiniCssExtractPlugin({
             filename: '[name].css',
             chunkFilename: '[id].css',
