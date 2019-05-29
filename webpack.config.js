@@ -1,6 +1,6 @@
 const devMode = process.env.NODE_ENV !== 'production';
 const path = require('path');
-
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHardDiskPlugin = require('html-webpack-harddisk-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -45,7 +45,7 @@ module.exports = {
                     },
                     {
                         loader: 'postcss-loader',
-                        options:{
+                        options: {
                             plugins: [
                                 autoprefixer(),
                             ],
@@ -55,68 +55,77 @@ module.exports = {
                     {
                         loader: 'sass-loader',
                         options: {
-                            sourceMap:true
+                            sourceMap: true
                         }
                     }
                 ]
             },
             {
-                test: /\.njk?/,
-                use:[
+                test: /\.html$|njk/,
+                use: [
                     {
-                        loader: 'nunjucks-isomorphic-loader',
-                        query: {
-                            root: [path.resolve(__dirname, 'src/templates')]
+                        loader: 'html-loader',
+                    },
+                    {
+                        loader: 'nunjucks-html-loader',
+                        options: {
+                            searchPaths: [
+                                path.resolve(__dirname, 'src/templates'),
+                            ],
                         }
-                    }
+                    },
                 ]
             },
             {
                 test: /\.(png|jpe?g|gif)$/,
-                use: [{
-                    loader: 'file-loader',
-                    options: {
-                        name: '[name]-[hash].[ext]',
-                        outputPath: 'images-processed'
-                    },
-                }],
-            },
-            {
-                test: /\.(otf|ttf|eot|woff|woff2)$/,
-                use: [
-                    {
+                use:
+                    [{
                         loader: 'file-loader',
                         options: {
                             name: '[name]-[hash].[ext]',
-                            outputPath: 'fonts'
+                            outputPath: 'images-processed'
                         },
-                    },
-                ],
-            },
+                    }],
+            }
+            ,
+            {
+                test: /\.(otf|ttf|eot|woff|woff2)$/,
+                use:
+                    [
+                        {
+                            loader: 'file-loader',
+                            options: {
+                                name: '[name]-[hash].[ext]',
+                                outputPath: 'fonts'
+                            },
+                        },
+                    ],
+            }
+            ,
             {
                 test: /\.css$/,
-                use: [
-                    {
-                        loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    },
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            sourceMap: true,
+                use:
+                    [
+                        {
+                            loader: devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                         },
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            plugins: [
-                                autoprefixer(),
-                            ],
-                            sourceMap: true,
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true,
+                            },
                         },
-                    },
-                ],
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: [
+                                    autoprefixer(),
+                                ],
+                                sourceMap: true,
+                            },
+                        },
+                    ],
             },
-
         ]
     },
     plugins: [
@@ -134,18 +143,25 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: "src/templates/index.njk",
+            template: "nunjucks-html-loader!./src/templates/index.njk",
             alwaysWriteToDisk: true
         }),
-        new HtmlWebpackHardDiskPlugin()
+        new HtmlWebpackHardDiskPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
     ],
-    devServer: {
-        host: '0.0.0.0',
-        port: 9000,
-        hot: true,
-        inline: true,
-        contentBase: './dist',
-    },
+    devServer:
+        {
+            host: '0.0.0.0',
+            port:
+                9000,
+            hot:
+                true,
+            inline:
+                true,
+            contentBase:
+                './dist',
+        }
+    ,
     node: {
         fs: 'empty'
     }
