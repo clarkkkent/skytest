@@ -18,7 +18,7 @@ module.exports = {
     output: {
         path: path.join(__dirname, 'dist'),
         filename: '[name]-[hash].js',
-        publicPath: '/src/'
+        publicPath: 'dist/'
     },
     module: {
         rules: [
@@ -56,6 +56,17 @@ module.exports = {
                         loader: 'sass-loader',
                         options: {
                             sourceMap:true
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.njk?/,
+                use:[
+                    {
+                        loader: 'nunjucks-isomorphic-loader',
+                        query: {
+                            root: [path.resolve(__dirname, 'src/templates')]
                         }
                     }
                 ]
@@ -122,8 +133,8 @@ module.exports = {
             chunkFilename: '[id].css',
         }),
         new HtmlWebpackPlugin({
-            filename: "index.html",
-            template: "src/index.html",
+            filename: 'index.html',
+            template: "src/templates/index.njk",
             alwaysWriteToDisk: true
         }),
         new HtmlWebpackHardDiskPlugin()
