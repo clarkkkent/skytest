@@ -1,11 +1,13 @@
 const devMode = process.env.NODE_ENV !== 'production';
 const path = require('path');
 const webpack = require('webpack');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHardDiskPlugin = require('html-webpack-harddisk-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
@@ -86,8 +88,14 @@ module.exports = {
                             outputPath: 'images-processed'
                         },
                     }],
-            }
-            ,
+            },
+            {
+                test: /\.svg/,
+                use: [
+                    'svg-sprite-loader',
+                    'svgo-loader'
+                ]
+            },
             {
                 test: /\.(otf|ttf|eot|woff|woff2)$/,
                 use:
@@ -148,6 +156,7 @@ module.exports = {
         }),
         new HtmlWebpackHardDiskPlugin(),
         new webpack.HotModuleReplacementPlugin(),
+        new SpriteLoaderPlugin()
     ],
     devServer:
         {
