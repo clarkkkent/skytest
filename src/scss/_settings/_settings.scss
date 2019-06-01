@@ -1,0 +1,18 @@
+$max-row-width: 1200;
+$grid-columns: 12;
+$grid: (
+        small: (
+                from: 0,
+                to: 977,
+                gutter: 12,
+                spacer: 8
+        ),
+        large: (
+                from: 978,
+                gutter: 30
+        )
+);
+
+
+$font: 'Avenir Next Cyr';
+$h-font: 'Avenir Next Cyr';

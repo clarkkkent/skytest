@@ -155,7 +155,7 @@ module.exports = {
             alwaysWriteToDisk: true
         }),
         new HtmlWebpackHardDiskPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
+
         new SpriteLoaderPlugin()
     ],
     devServer:
