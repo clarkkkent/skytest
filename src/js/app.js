@@ -3,6 +3,6 @@ import '../scss/app.scss';
 import '../fonts/Avenir/avenir.css';
 
 
-document.addEventListener('scroll', () => {
-  console.log('work');
+window.addEventListener('click', () => {
+  console.log(this);
 });

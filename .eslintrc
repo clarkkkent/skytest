@@ -4,5 +4,8 @@
   },
   "extends": [
     "airbnb-base"
-  ]
+  ],
+  "rules": {
+    "eol-last": ["error", "never"]
+  }
 }
