@@ -168,6 +168,26 @@ module.exports = {
       contentBase:
         './public',
     },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        vendors: {
+          test: (item) => {
+            if (item.resource && item.resource.match(/[\\/]node_modules[\\/]/)) {
+              if (item.resource.match(/\.s?css$/)) {
+                return false;
+              }
+              return true;
+            }
+            return false;
+          },
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
+
   node: {
     fs: 'empty',
   },
