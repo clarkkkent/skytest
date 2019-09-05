@@ -13,7 +13,7 @@ function openModal() {
   const links = document.querySelectorAll('[data-modal]');
   links.forEach((link) => {
     link.addEventListener('click', function () {
-      const modal = new Modal(this);
+      const modal = new Modal(this, { titleText: 'Confirm', buttonText: 'Confirm and Pay'});
       modal.openModal();
     })
   })

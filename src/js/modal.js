@@ -1,7 +1,10 @@
 export default class Modal {
-  constructor(elem) {
+  constructor(elem, opts = {}) {
+    const { titleText, buttonText } = opts;
     this.elem = elem;
     this.body = document.querySelector('body');
+    this.titleText = titleText;
+    this.buttonText = buttonText;
     this.modal = null;
     this.inner = null;
     this.overlay = null;
@@ -34,13 +37,13 @@ export default class Modal {
     this.button = document.createElement('button');
     this.button.classList.add('modal__button');
     this.button.classList.add('button');
-    this.button.innerHTML = 'Confirm and Pay';
+    this.button.innerHTML = this.buttonText;
 
     this.closer = document.createElement('span');
     this.closer.classList.add('modal__closer');
 
     this.title = document.createElement('h2');
-    this.title.innerHTML = 'Confirmation';
+    this.title.innerHTML = this.titleText;
     this.title.classList.add('modal__title');
 
     this.body.appendChild(this.modal);
