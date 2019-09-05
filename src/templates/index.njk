@@ -1,9 +1,57 @@
 {% extends './layouts/base.njk' %}
 
 {% block main %}
-    <div class="row">
-        <div class="column">
-            <h1>Hello</h1>
-        </div>
+    <div class="tariffs">
+        <ul class="tariffs__list tariffs-list">
+            <li class="tariffs-list__item">
+                <a href="javascript:void(0);" class="tariff" data-modal>
+                    <span class="tariff__icon">
+                        <svg>
+                            <use xlink:href="#device"></use>
+                        </svg>
+                    </span>
+                    <span class="tariff__title">Mobile</span>
+                    <span class="tariff__description">Get notifications about new releases in our mobile app</span>
+                    <span class="tariff__price">
+                        <strong>10</strong>
+                        / month
+                    </span>
+                </a>
+            </li>
+            <li class="tariffs-list__item">
+                <a href="javascript:void(0);" class="tariff" data-modal>
+                    <span class="tariff__icon">
+                        <svg>
+                            <use xlink:href="#laptop"></use>
+                        </svg>
+                    </span>
+                    <span class="tariff__title">Desktop</span>
+                    <span class="tariff__description">Enjoy new episodes on your laptop in browser with our web
+                        service, which supports all the platforms
+                    </span>
+                    <span class="tariff__price">
+                        <strong>15</strong>
+                        / month
+                    </span>
+                </a>
+            </li>
+            <li class="tariffs-list__item">
+                <a href="javascript:void(0);" class="tariff" data-modal>
+                    <span class="tariff__icon">
+                        <svg>
+                            <use xlink:href="#monitor"></use>
+                        </svg>
+                    </span>
+                    <span class="tariff__title">TV</span>
+                    <span class="tariff__description">Watch your favorites series at home on large screen with our TV
+                        application
+                    </span>
+                    <span class="tariff__price">
+                        <strong>20</strong>
+                        / month
+                    </span>
+                </a>
+            </li>
+        </ul>
     </div>
 {% endblock %}

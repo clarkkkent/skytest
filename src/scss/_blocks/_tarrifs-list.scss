@@ -1,0 +1,15 @@
+.tariffs-list {
+  display: flex;
+  max-width: 1000px;
+  justify-content: center;
+  padding: 20px;
+  margin: 50px auto;
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 10px 17px 0 rgba(0,0,0,0.3);
+  flex-wrap: wrap;
+
+  &__item {
+    width: 320px;
+  }
+}

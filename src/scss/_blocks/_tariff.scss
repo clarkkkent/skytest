@@ -1,0 +1,61 @@
+.tariff {
+  padding: 0 50px 40px 50px;
+  display: block;
+  transition: all .2s ease-in-out;
+  &:hover {
+    background: rgba(130, 167, 255, 0.3);
+  }
+
+  &__icon {
+    text-align: center;
+    position: relative;
+    display: block;
+
+    svg {
+      width: 70px;
+    }
+  }
+
+  &__title {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    color: #6280ff;
+    letter-spacing: 0.2em;
+    margin-bottom: 30px;
+    display: block;
+  }
+
+  &__description {
+    text-align: center;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.4);
+    font-weight: 500;
+    line-height: 1.5em;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  &__price {
+    position: relative;
+    font-size: 14px;
+    text-align: center;
+    color: #6280ff;
+    display: block;
+
+    ::before {
+      position: absolute;
+      top: 5px;
+      font-size: 14px;
+      left: -10px;
+      content: '$';
+    }
+
+    strong {
+      position: relative;
+      font-size: 30px;
+      font-weight: 500;
+    }
+  }
+}
