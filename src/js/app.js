@@ -1,10 +1,10 @@
-import '../scss/app.scss';
 
-import '../fonts/Avenir/avenir.css';
+import '../scss/app.scss';
 
 import Device from '../svg/device.svg';
 import Monitor from '../svg/monitor.svg';
 import Laptop from '../svg/laptop.svg';
+
 import Modal from './modal';
 
 document.addEventListener('DOMContentLoaded', openModal);

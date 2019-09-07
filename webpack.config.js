@@ -15,11 +15,11 @@ module.exports = {
   entry: {
     main: path.resolve(__dirname, ('src/js/app.js')),
   },
-  devtool: 'source-map',
+  // devtool: 'source-map',
   output: {
     path: path.join(__dirname, 'public'),
     filename: '[name]-[hash].js',
-    publicPath: './',
+    publicPath: '',
   },
   module: {
     rules: [
@@ -41,7 +41,7 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
+              sourceMap: false,
             },
           },
           {
@@ -50,13 +50,13 @@ module.exports = {
               plugins: [
                 autoprefixer(),
               ],
-              sourceMap: true,
+              sourceMap: false,
             },
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true,
+              sourceMap: false,
             },
           },
         ],
@@ -118,7 +118,7 @@ module.exports = {
             {
               loader: 'css-loader',
               options: {
-                sourceMap: true,
+                sourceMap: false,
               },
             },
             {
@@ -127,7 +127,7 @@ module.exports = {
                 plugins: [
                   autoprefixer(),
                 ],
-                sourceMap: true,
+                sourceMap: false,
               },
             },
           ],
@@ -144,7 +144,7 @@ module.exports = {
     ]),
 
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: '[name]-[hash].css',
       chunkFilename: '[id].css',
     }),
     new HtmlWebpackPlugin({
